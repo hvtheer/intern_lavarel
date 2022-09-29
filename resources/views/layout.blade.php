@@ -18,28 +18,28 @@
     <div class="sidebar">
         <div class="menu">
             <p id="head-sidebar">System</p>
-            <a href="{{ url('admin/user/') }}">
-                <p id="list-sidebar">User management</p>
+            <a href="{{ route('admin.user.index') }}">
+                <p>User management</p>
             </a>
-            <a href="{{ url('admin/role/') }}">
-                <p id="list-sidebar">Role management</p>
+            <a href="{{ route('admin.role.index') }}">
+                <p>Role management</p>
             </a>
-            <a href="{{ url('admin/permission/') }}">
-                <p id="list-sidebar">Permission management</p>
+            <a href="{{ route('admin.permission.index') }}">
+                <p>Permission management</p>
             </a>
             <p id="head-sidebar">Catalog</p>
-            <a href="{{ url('admin/product/') }}">
-                <p id="list-sidebar">Product management</p>
+            <a href="{{ route('admin.product.index') }}">
+                <p>Product management</p>
             </a>
-            <a href="{{ url('admin/category/') }}">
-                <p id="list-sidebar">Category management</p>
+            <a href="{{ route('admin.category.index') }}">
+                <p>Category management</p>
             </a>
         </div>
     </div>
     @yield('content')
     <div class="container footer">
         <div>
-            <p>Footer</p>
+            <p>FOOTER</p>
         </div>
     </div>
 </body>

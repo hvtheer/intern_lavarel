@@ -5,19 +5,19 @@
         <div class="container">
             <nav class="navbar justify-content-between">
                 <a class="navbar-brand">User List</a>
-                <div class="">
-                    <a class="btn btn-default btn-outline-dark"  type="submit" href="{{ route('admin.user.index') }}">
+                <div>
+                    <a class="btn btn-default btn-outline-dark" type="submit" href="{{ route('mail') }}">
                         Send mail
                     </a>
-                    <a class="btn btn-primary" type="submit" href="{{ route('admin.user.create')}}">
+                    <a class="btn btn-primary" type="submit" href="{{ route('admin.user.create') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                         </svg>
                         Add new
                     </a>
-                </div>
+                </div> 
             </nav>
-            <table class="table table-hover table-bordered" style="background-color: white">
+            <table class="table table-hover table-bordered bg-white">
                 <thead>
                     <tr>
                         <th style="width: 10%;" scope="col">User</th>

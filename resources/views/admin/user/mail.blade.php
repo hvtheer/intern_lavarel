@@ -1,28 +1,26 @@
 @extends ('layout')
 @section ('content')
-
-<!--MAIN-->
 <div class="main">
     <div class="container">
         <nav class="navbar justify-content-between">
             <a class="navbar-brand">Send email to user</a>
-            <a class="btn btn-primary" type="submit" href="{{url('admin/user')}}">Back</a>
+            <a class="btn btn-primary" type="submit" href="{{ route('admin.user.index')}}">Back</a>
         </nav>
         <form style="margin-top: 5%;" method="post">
-            <div class="select">
-                <select class="custom-select col-12" name="email" required>
-                    <option selected value="all_user">Select a User or All</option>
-                    {{-- @foreach($users as $user)
-                        <option value="{{$user['email']}}">{{$user['name']}}</option>
-                    @endforeach --}}
+            @csrf
+            <select class="custom-select typedropdown form-control" name="mail">
+                <option value="all">Select a user</option>
+                @if(!empty($users))
+                    @foreach($users as $user)
+                    <option value="{{ $user['email'] }}">{{ $user['name'] }}</option>
+                    @endforeach
+                @endif
                 </select>
-            </div>
-            <div class="add-button">
+            <div class="add-button" style="margin-top: 5%;">
                 <button type="submit" class="btn btn-primary btn-sm">Send</button>
             </div>
         </form>
+        </div>
     </div>
 </div>
-<!--main-->
-
 @endsection

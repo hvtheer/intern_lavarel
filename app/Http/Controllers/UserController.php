@@ -35,22 +35,8 @@ class UserController extends Controller
         return collect(Session::get('users'));
     }
 
-    public function show($id)
+    public function mail()
     {
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
+        return view('admin.user.mail');
     }
 }

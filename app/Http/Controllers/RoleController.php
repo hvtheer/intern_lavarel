@@ -2,37 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
-class UserController extends Controller
+class RoleController extends Controller
 {
     public function index()
     {
-        return view('admin.user.index', [
-            'users' => $this->getSessionUsers(),
-        ]);
+        return view('admin.role.index');
     }
 
     public function create()
     {
-        return view('admin.user.create');
+        return view('admin.role.create');
     }
 
     public function store(Request $request)
     {
-        Session::push('users', $request->validated());
-
-        return view('admin.user.index', [
-            'users' => $this->getSessionUsers(),
-        ]);
-    }
-
-    private function getSessionUsers()
-    {
-        return collect(Session::get('users'));
     }
 
     public function show($id)

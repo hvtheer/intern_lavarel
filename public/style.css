@@ -41,15 +41,12 @@
     font-size: 25px;
 }
 
-.menu #list-sidebar {
-    padding-left: 20px;
-}
-
 .menu a {
     text-decoration: none;
-    color: black;
 }
-
+.menu a p {
+    padding-left: 20px;
+}
 
 /* Main */
 

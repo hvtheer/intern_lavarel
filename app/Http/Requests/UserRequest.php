@@ -28,10 +28,6 @@ class UserRequest extends FormRequest
             ],
             'password' =>   [
                 'required',
-                // 'regex:/[a-z]/',      // must contain at least one lowercase letter
-                // 'regex:/[A-Z]/',      // must contain at least one uppercase letter
-                // 'regex:/[0-9]/',      // must contain at least one digit
-                // 'regex:/[@$!%*#?&]/', // must contain a special character
                 'confirmed',
                 'same:password_confirm',
                 Password::min(8)
@@ -41,22 +37,26 @@ class UserRequest extends FormRequest
                     ->symbols()
                     ->uncompromised(),
             ],
-            'password_confirm' => 'required',
-            'facebook' =>'url',
-            'youtube' => 'url',
+            'password_confirm' => [
+                'required',
+            ],
+            'facebook' => [
+                'url',
+            ],
+            'youtube' => [
+                'url',
+            ],
         ];
     }
 
     public function messages()
     {
         return[
-        'name.required' => 'Không được bỏ trống',
-        'name.min' => 'Vui lòng nhập nhiều hơn 2 kí tự',
-        'name.not_regex' => 'Không được nhập kí tự @, #, $, %, &, *',
-        'password.required' => 'Vui lòng nhập mật khẩu',
-        'password.min' => 'Nhập tối thiểu 8 kí tự',
-        'facebook.url' => 'Phải đúng định dạng url',
-        'youtube.url' => 'Phải đúng định dạng url',
+        'name.min' => 'Please, enter a text with more than 2 letters!',
+        'name.not_regex' => 'Please, don\'t ente a text contain @, #, $, %, &, *!',
+        'password.min' => 'Please, enter a text with at least 8 letters!',
+        'facebook.url' => 'Please, enter a properly formatted url!',
+        'youtube.url' => 'Please, enter a properly formatted url!',
         ];
     }
 
