@@ -6,7 +6,7 @@
             <nav class="navbar justify-content-between">
                 <a class="navbar-brand">User List</a>
                 <div>
-                    <a class="btn btn-default btn-outline-dark" type="submit" href="{{ route('mail') }}">
+                    <a class="btn btn-default btn-outline-dark" type="submit" href="{{route('formSendMail')}}">
                         Send mail
                     </a>
                     <a class="btn btn-primary" type="submit" href="{{ route('admin.user.create') }}">
@@ -15,7 +15,7 @@
                         </svg>
                         Add new
                     </a>
-                </div> 
+                </div>
             </nav>
             <table class="table table-hover table-bordered bg-white">
                 <thead>
@@ -73,4 +73,4 @@
         </div> 
     </div> 
 </div>
-@stop()
+@endsection()
