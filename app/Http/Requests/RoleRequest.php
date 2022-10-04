@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Symfony\Contracts\Service\Attribute\Required;
 
 class UserRequest extends FormRequest
 {
@@ -16,8 +15,8 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => [
-                'required', 
-                'min:2', 
+                'required',
+                'min:2',
                 'regex:/^[^0-9][a-zA-Z0-9_]',
                 'not_regex:/^[@#$%&*]',
             ],
@@ -25,7 +24,7 @@ class UserRequest extends FormRequest
                 'required',
                 'email',
             ],
-            'password' =>   [
+            'password' => [
                 'required',
                 Password::min(8)
                                 ->letters()
@@ -34,10 +33,10 @@ class UserRequest extends FormRequest
                                 ->symbols()
                                 ->uncompromised(3),
                 'confirmed',
-                'same:password_confirm'
+                'same:password_confirm',
             ],
             'password_confirm' => 'required',
-            'facebook' =>'url',
+            'facebook' => 'url',
             'youtube' => 'url',
         ];
     }
@@ -45,14 +44,14 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return[
-        'name.required' => 'Không được bỏ trống',
-        'name.min' => 'Vui lòng nhập nhiều hơn 2 kí tự',
-        'name.not_regex' => 'Không được nhập kí tự @, #, $, %, &, *',
-        'password.required' => 'Vui lòng nhập mật khẩu',
-        'password.min' => 'Nhập tối thiểu 8 kí tự',
-        'facebook.url' => 'Phải đúng định dạng url',
-        'youtube.url' => 'Phải đúng định dạng url',
-    
+            'name.required' => 'Không được bỏ trống',
+            'name.min' => 'Vui lòng nhập nhiều hơn 2 kí tự',
+            'name.not_regex' => 'Không được nhập kí tự @, #, $, %, &, *',
+            'password.required' => 'Vui lòng nhập mật khẩu',
+            'password.min' => 'Nhập tối thiểu 8 kí tự',
+            'facebook.url' => 'Phải đúng định dạng url',
+            'youtube.url' => 'Phải đúng định dạng url',
+
         ];
     }
 
