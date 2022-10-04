@@ -6,7 +6,6 @@ use App\Http\Requests\UserRequest;
 use App\Services\MailService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -28,12 +27,7 @@ class UserController extends Controller
     {
         Session::push('users', $request->validated());
 
-        return view('admin.user.index', [
-            'users' => $this->getSessionUsers(),
-        ]);
-
-        // Session::push('users', $request->only(['name', 'email', 'phone', 'address']));
-        // return redirect()->route('admin.user.index')->with('message', 'Thêm thành công');
+        return redirect()->back()->with('message', 'Thêm mới thành công');
     }
 
     private function getSessionUsers()
@@ -48,29 +42,15 @@ class UserController extends Controller
 
     public function sendMailUserProfile(Request $request)
     {
-        $users = $request->email == 'all' ? collect(Session::get('users')) : collect(Session::get('users'))->where('email', $request->email);
-
-        $path = public_path('uploads');
-        $attachment = $request->file('attachment');
-
-        if(!empty($attachment)) {
-            $name = time().'.'.$attachment->getClientOriginalExtension();
-
-            if(!File::exists($path)) {
-                File::makeDirectory($path, $mode = 0777, true, true);
-            }
-            $attachment->move($path, $name);
-
-            $filename = $path.'/'.$name;
-
-            foreach ($users as $user) {
-                $this->mailService->sendUserProfile($user, $filename);
-            }
-        }else {
-            foreach ($users as $user) {
-                $this->mailService->sendUserProfile($user, $filename='/');
-            }
+        if ($request->email == 'all') {
+            $users = $this->getSessionUsers();
+        } else {
+            $users = $this->getSessionUsers()->where('email', '=', $request->email);
         }
+        foreach ($users as $user) {
+            $this->mailService->sendUserProfile($user);
+        }
+        // return redirect()->back()->with('message', 'Gủi thành công!');
         
         return redirect()->back()->with('message', 'Gửi mail thành công');
     }
@@ -78,7 +58,7 @@ class UserController extends Controller
     public function formSendMail()
     {
         return view('mail.index', [
-            'users'=> $this->getSessionUsers(),
+            'users' => $this->getSessionUsers(),
         ]);
     }
 }
