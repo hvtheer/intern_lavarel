@@ -8,13 +8,7 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::resource('permission', App\Http\Controllers\PermissionController::class);
     Route::resource('product', App\Http\Controllers\ProductController::class);
     Route::resource('category', App\Http\Controllers\CategoryController::class);
-
 });
-// Route::get('mail', function () {
-//     return view('admin.user.mail');
-// })->name('mail');
-// Route::get('/mail', function () {
-//     return new App\Mail\InformUserProfile;
-// });
+
 Route::get('/formSendMail', [App\Http\Controllers\UserController::class, 'formSendMail'])->name('formSendMail');
-Route::post('/send', [App\Http\Controllers\UserController::class, 'sendMailUserProfile'])->name('send');
+Route::post('/formSendMail', [App\Http\Controllers\UserController::class, 'sendMailUserProfile'])->name('send');

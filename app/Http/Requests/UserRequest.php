@@ -18,28 +18,17 @@ class UserRequest extends FormRequest
             'name' => [
                 'required', 
                 'min:2', 
-                'regex:/^[^0-9][a-zA-Z0-9_]',
-                'not_regex:/^[@#$%&*]',
+                'regex:/^[^0-9][a-zA-Z0-9_]+/',
+                'not_regex:/^[@#$%&*]/',
             ],
             'email' => [
                 'required',
                 'email',
-                'unique:users',
+//                'unique:users',
             ],
-            'password' =>   [
-                'required',
-                'confirmed',
-                'same:password_confirm',
-                Password::min(8)
-                    ->mixedCase()
-                    ->letters()
-                    ->numbers()
-                    ->symbols()
-                    ->uncompromised(),
-            ],
-            'password_confirm' => [
-                'required',
-            ],
+            'address' => 'required',
+            'password' => 'required|string|min:8|regex:/[@$!%*#?&]/|regex:/[0-9]/|required_with:password_confirm|same:password_confirm',
+            'password_confirm' => 'required',
             'facebook' => [
                 'url',
             ],
@@ -48,22 +37,4 @@ class UserRequest extends FormRequest
             ],
         ];
     }
-
-    public function messages()
-    {
-        return[
-        'name.min' => 'Please, enter a text with more than 2 letters!',
-        'name.not_regex' => 'Please, don\'t ente a text contain @, #, $, %, &, *!',
-        'password.min' => 'Please, enter a text with at least 8 letters!',
-        'facebook.url' => 'Please, enter a properly formatted url!',
-        'youtube.url' => 'Please, enter a properly formatted url!',
-        ];
-    }
-
-    // public function attributes()
-    // {
-    //     return[
-    //         'name' => 'Tên người dùng'
-    //     ];
-    // }
 }
