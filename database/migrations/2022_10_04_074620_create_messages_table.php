@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('receiver_type', 255);
             $table->text('content', 255);
             $table->string('content_type', 255)->default('text');
-            $table->integer('association_id')->unsigned();
+            $table->integer('association_id')->unsigned()->nullable();
             $table->string('association_type', 255);
             $table->timestamps();
             $table->softDeletes();

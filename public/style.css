@@ -1,32 +1,18 @@
 /* header */
 
 .header {
-    overflow: hidden;
+    display: flex;
     background-color: rgb(176, 176, 176);
     text-align: center;
+    padding-top: 15px;
 }
-
-#header-left {
-    width: 20%;
-    float: left;
-    margin-top: 15px;
-}
-
-#header-right {
-    width: 80%;
-    float: left;
-    text-align: center;
-    margin-top: 15px;
-}
-
 
 /* side bar*/
 
 .sidebar {
+    display: flex;
     height: 700px;
-    width: 20%;
     position: relative;
-    overflow-x: hidden;
     background-color: #DAE8FC;
     float: left;
     border: 2px solid #6C8EBF;
@@ -50,15 +36,16 @@
 
 /* Main */
 
-.main {
-    float: right;
-    width: 80%;
+.content {
+    position: relative;
+    float: left;
     height: 700px;
     background-color: white;
 }
 
 .card {
-    margin: 50px 20px auto 20px;
+    margin: 50px auto;
+    padding-bottom:15px;
 }
 
 
@@ -73,18 +60,13 @@
     border-radius: 15px;
 }
 
-
-/* Footer */
-
 .footer {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
     background-color: rgb(176, 176, 176);
-}
-
-.footer p {
     text-align: center;
+    padding: 15px;
 }
-
 
 /*User List*/
 
@@ -92,6 +74,6 @@
     text-align: center;
 }
 
-.bi.bi-person {
+.bi .bi-person {
     width: 50px;
 }

@@ -47,6 +47,7 @@ class UserController extends Controller
         } else {
             $users = $this->getSessionUsers()->where('email', '=', $request->email);
         }
+        
         foreach ($users as $user) {
             $this->mailService->sendUserProfile($user);
         }

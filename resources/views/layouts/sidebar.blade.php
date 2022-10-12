@@ -1,5 +1,5 @@
 <!-- sidebar -->
-<div class="sidebar">
+<div class="col-md-2 sidebar">
     <div class="menu">
         <p id="head-sidebar">System</p>
         <a href="{{ route('admin.user.index') }}">
