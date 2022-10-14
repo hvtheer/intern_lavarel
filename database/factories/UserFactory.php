@@ -4,16 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
- */
 class UserFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition()
     {
         return [
@@ -21,11 +13,11 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->safeEmail(),
             'username' => fake()->userName(),
-            'password' => fake()->password(),
+            'password'=> fake()->password(),
             'phone' => fake()->phoneNumber(),
             'address' => fake()->address(),
             'type' => fake()->randomDigit(),
-            'parent_id' => fake()->randomNumner(4, false),
+            'parent_id' => fake()->randomNumber(4, false),
             'verified_at' => now(),
             'closed' => false,
             'code' => fake()->randomNumber(5, false),
@@ -34,7 +26,17 @@ class UserFactory extends Factory
             'social_name' => fake()->name(),
             'social_nickname' => fake()->word(),
             'social_avatar' => fake()->word(),
-            'descripton' => fake()->sentence(),
+            'description' => fake()->sentence(),
+
         ];
     }
+
+    // public function unverified()
+    // {
+    //     return $this->state(function (array $attributes) {
+    //         return [
+    //             'email_verified_at' => null,
+    //         ];
+    //     });
+    // }
 }

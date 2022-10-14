@@ -2,28 +2,22 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
         $this->call([
-            UserSeeder::class,
             SchoolSeeder::class,
-            TagSeeder::class,
-            TaggableSeeder::class,
+            UserSeeder::class,
+            PermissionGroupSeeder::class,
+            PermissionSeeder::class,
             RoleSeeder::class,
             UsersRoleSeeder::class,
-            PermissionSeeder::class,
-            RolePermissionSeeder::class,
-            PermissionsGroupSeeder::class,
+            TagSeeder::class,
+            TaggableSeeder::class,
+            RolesPermissionSeeder::class,
             AttachmentSeeder::class,
             MessageSeeder::class,
         ]);
