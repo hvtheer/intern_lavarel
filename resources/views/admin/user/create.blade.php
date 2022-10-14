@@ -8,7 +8,6 @@
             <a class="navbar-brand">Create a User</a>
             <a class="btn btn-primary" type="submit" href="{{ route('admin.user.index')}}">Back</a>
         </nav>
-
         <form action="{{ route('admin.user.store') }}" method="post">
             @csrf
             {{-- @if ($errors->any())

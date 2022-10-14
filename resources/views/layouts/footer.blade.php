@@ -1,7 +1,5 @@
 <!-- footer -->
 <div class="footer">
-    <div class="container">
-        <p>FOOTER</p>
-    </div>
+    <p>FOOTER</p>
 </div>
 <!-- /footer -->

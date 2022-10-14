@@ -1,6 +1,6 @@
 <!-- header -->
 <div class="header">
-    <b id="header-left">GOL SOFT</b>
-    <p id="header-right">HEADER</p>
+    <b class="col-md-2">GOL SOFT</b>
+    <p class="col-md-10">HEADER</p>
 </div>
 <!-- /header -->

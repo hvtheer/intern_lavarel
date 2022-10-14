@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-<div class="main">
+<div class="col-md-10 content">
     <div class="container">
         <div class="card bg-light">
             <div class="container">
@@ -21,10 +21,10 @@
                 <table class="table table-hover table-bordered bg-white">
                     <thead>
                         <tr>
-                            <th style="width: 10%;" scope="col">User</th>
+                            <th style="width: 15%;" scope="col">User</th>
                             <th style="width: 30%;" scope="col">Name</th>
                             <th style="width: 30%;" scope="col">Email</th>
-                            <th style="width: 20%;" scope="col">Action</th>
+                            <th style="width: 15%;" scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>

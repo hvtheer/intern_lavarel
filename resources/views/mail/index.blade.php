@@ -6,20 +6,21 @@
             <a class="navbar-brand">Send email to user</a>
             <a class="btn btn-primary" type="submit" href="{{ route('admin.user.index')}}">Back</a>
         </nav>
-        <form style="margin-top: 5%;" action="{{ route('send') }}" method="post">
+        <form action="{{ route('send') }}" method="post">
             @csrf
             <label for="Name">Name</label>
-            <select class="selectpicker form-control" name="email">
-                <option value="all">Select a user</option>
+            <select class="selectpicker form-control" name="email" title="Choose one of the following...">
+                <option value="all">All users</option>
                 @if(!empty($users))
                     @foreach($users as $user)
                     <option value="{{ $user['email'] }}">{{ $user['name'] }}</option>
                     @endforeach
                 @endif
             </select>
-            {{-- <div style="margin: 5%;">
+            <div>
+                <label for="Attachment">Attachment</label>
                 <input class="form-control" type="file" id="attachment" name="attachment">
-            </div> --}}
+            </div>
             <div class="add-button" style="margin-top: 5%;">
                 <button type="submit" class="btn btn-primary btn-sm">Send</button>
             </div>
