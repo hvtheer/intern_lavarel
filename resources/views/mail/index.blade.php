@@ -1,6 +1,6 @@
 @extends ('layout')
 @section ('content')
-<div class="main">
+<div class="col-md-10 content">
     <div class="container">
         <nav class="navbar justify-content-between">
             <a class="navbar-brand">Send email to user</a>

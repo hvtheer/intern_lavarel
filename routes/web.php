@@ -9,6 +9,12 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::resource('product', App\Http\Controllers\ProductController::class);
     Route::resource('category', App\Http\Controllers\CategoryController::class);
 });
-
 Route::get('/formSendMail', [App\Http\Controllers\UserController::class, 'formSendMail'])->name('formSendMail');
 Route::post('/formSendMail', [App\Http\Controllers\UserController::class, 'sendMailUserProfile'])->name('send');
+
+Auth::routes(['verify' => true]);
+Route::get('/', function () {
+    return redirect('/home');
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

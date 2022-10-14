@@ -1,8 +1,6 @@
 @extends ('layout')
 @section ('content')
-
-<!--MAIN-->
-<div class="main">
+<div class="col-md-10 content">
     <div class="container">
         <nav class="navbar justify-content-between">
             <a class="navbar-brand">Create a User</a>
@@ -93,6 +91,4 @@
         </form>
     </div>
 </div>
-<!--main-->
-
 @endsection

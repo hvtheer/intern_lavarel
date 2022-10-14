@@ -11,7 +11,7 @@
 
 .sidebar {
     display: flex;
-    height: 700px;
+    height: 800px;
     position: relative;
     background-color: #DAE8FC;
     float: left;
@@ -39,7 +39,7 @@
 .content {
     position: relative;
     float: left;
-    height: 700px;
+    height: 800px;
     background-color: white;
 }
 
