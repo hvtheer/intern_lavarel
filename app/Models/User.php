@@ -6,23 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Auth\Authenticatable as AuthenticableTrait;
-use Illuminate\Auth\Events\Verified;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use SoftDeletes;
-    use HasApiTokens;
     use HasFactory;
     use Notifiable;
     use AuthenticableTrait;
 
-    // public const TYPES = [
-    //     'admin' => 1,
-    //     'student' => 2,
-    // ];
+    public const TYPES = [
+        'admin' => 1,
+        'student' => 2,
+    ];
 
     public $fillable =[
         'name',
@@ -53,30 +50,30 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Message::class);
     }
 
-    // public function isAdmin()
-    // {
-    //     return $this->type == self::TYPES['admin'];
-    // }
+    public function isAdmin()
+    {
+        return $this->type == self::TYPES['admin'];
+    }
 
-    // public function isStudent()
-    // {
-    //     return $this->type == self::TYPES['student'];
-    // }
+    public function isStudent()
+    {
+        return $this->type == self::TYPES['student'];
+    }
 
     public function attachments()
     {
         return $this->hasMany(Attachment::class);
     }
 
-    // public function hasVerifiedEmail()
-    // {
-    //     return !is_null($this->verified_at);
-    // }
+    public function hasVerifiedEmail()
+    {
+        return !is_null($this->verified_at);
+    }
 
-    // public function markEmailAsVerified()
-    // {
-    //     return $this->forceFill([
-    //         'verified_at' => $this->freshTimestamp(),
-    //     ])->save();
-    // }
+    public function markEmailAsVerified()
+    {
+        return $this->forceFill([
+            'verified_at' => $this->freshTimestamp(),
+        ])->save();
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::name('admin.')->prefix('admin')->group(function () {
     Route::resource('user', App\Http\Controllers\UserController::class);
