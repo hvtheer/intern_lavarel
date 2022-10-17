@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -25,12 +25,13 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    protected $redirectTo = '/login';
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/login';
+
 
     /**
      * Create a new controller instance.
@@ -52,8 +53,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'username' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'username' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -68,10 +69,10 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
             'username' => $data['username'],
+            'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'type' => User::TYPES['students'],
+            'type' => User::TYPES['student'],
         ]);
     }
 
@@ -81,6 +82,6 @@ class RegisterController extends Controller
 
         event(new Registered($this->create($request->all())));
 
-        return redirect('/login')->with('status', "Please, check your mail!");
+        return redirect('/login')->with('status', 'Please check your email and verify according to the instructions.');
     }
 }

@@ -4,9 +4,9 @@
     <div class="container">
         <nav class="navbar justify-content-between">
             <a class="navbar-brand">Create a User</a>
-            <a class="btn btn-primary" type="submit" href="{{ route('admin.user.index')}}">Back</a>
+            <a class="btn btn-primary" type="submit" href="{{ route('user.index')}}">Back</a>
         </nav>
-        <form action="{{ route('admin.user.store') }}" method="post">
+        <form action="{{ route('user.store') }}" method="post">
             @csrf
             {{-- @if ($errors->any())
                 <div class="alert alert-danger text-center ">

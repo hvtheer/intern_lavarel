@@ -5,6 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                @if (session('status'))
+                    <span class="alert alert-warning help-block">
+                        <strong>{{ session('status') }}</strong>
+                    </span>
+                @endif
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
@@ -38,6 +43,20 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="row mb-3">
+                            <label for="username" class="col-md-4 col-form-label text-md-end">{{ __('User Name') }}</label>
+
+                            <div class="col-md-6">
+                                 <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('phone') }}">
+
+                                    @if ($errors->has('username'))
+                                         <span class="invalid-feedback" role="alert">
+                                             <strong>{{ $errors->first('username') }}</strong>
+                                          </span>
+                                     @endif
+                             </div>
+                         </div>
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>

@@ -24,19 +24,19 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ];
     }
 
-    public function getCredentials()
+    public function getCredential()
     {
         $credential = $this->validated();
 
-        if (filter_var($credential['username'], FILTER_VALIDATE_EMAIL)) {
+        if (! filter_var($credential['email'], FILTER_VALIDATE_EMAIL)) {
             return [
-                'email' => $credential['username'],
-                'password' => $credential['password']
+                'username' => $credential['email'],
+                'password' => $credential['password'],
             ];
         }
 
