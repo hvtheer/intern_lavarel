@@ -23,17 +23,19 @@ class UserRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                //                'unique:users',
             ],
-            'address' => 'required',
-            'password' => 'required|string|min:8|regex:/[@$!%*#?&]/|regex:/[0-9]/|required_with:password_confirm|same:password_confirm',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/[@$!%*#?&]/|regex:/[0-9]/',
+                'required_with:password_confirm',
+                'same:password_confirm',
+            ],
             'password_confirm' => 'required',
-            'facebook' => [
-                'url',
-            ],
-            'youtube' => [
-                'url',
-            ],
+            'address' => 'required',
+            'facebook' => 'url',
+            'youtube' => 'url',
         ];
     }
 }

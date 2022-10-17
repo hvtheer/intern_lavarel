@@ -1,10 +1,10 @@
 @extends ('layout')
 @section ('content')
-<div class="main">
+<div class="col-md-10 content">
     <div class="container">
         <nav class="navbar justify-content-between">
             <a class="navbar-brand">Send email to user</a>
-            <a class="btn btn-primary" type="submit" href="{{ route('admin.user.index')}}">Back</a>
+            <a class="btn btn-primary" type="submit" href="{{ route('user.index')}}">Back</a>
         </nav>
         <form action="{{ route('send') }}" method="post">
             @csrf
