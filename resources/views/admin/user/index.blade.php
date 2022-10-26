@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 @section('content')
 <div class="col-md-10 content">
     <div class="container">
@@ -57,7 +57,6 @@
                         <div class="page-item">
                             <a class="page-link" href="#" aria-label="Previous">
                                 <span aria-hidden="true"><</span>
-            
                             </a>
                         </div>
                         <div class="page-item">

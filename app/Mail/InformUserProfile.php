@@ -12,14 +12,19 @@ class InformUserProfile extends Mailable
     use SerializesModels;
 
     public $user;
+    public $attachment;
 
-    public function __construct($user)
+    public function __construct($user, $attachment)
     {
         $this->user = $user;
+        $this->attachment = $attachment;
     }
 
     public function build()
     {
-        return $this->view('mail.inform-user-profile', ['user' => $this->user]);
+        if ($this->attachment == '/') {
+            return $this->view('mail.inform-user-profile', ['user'=> $this->user]);
+        }
+        return $this->view('mail.inform-user-profile', ['user'=> $this->user])->attach($this->attachment);
     }
 }

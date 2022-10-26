@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Services\MailService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facedes\Files;
 
 class UserController extends Controller
 {
@@ -45,15 +46,32 @@ class UserController extends Controller
         if ($request->email == 'all') {
             $users = $this->getSessionUsers();
         } else {
-            $users = $this->getSessionUsers()->where('email', '=', $request->email);
+            $users = $this->getSessionUsers()->where('email', $request->email);
         }
         
-        foreach ($users as $user) {
-            $this->mailService->sendUserProfile($user);
-        }
-        // return redirect()->back()->with('message', 'Gủi thành công!');
+        $path = public_path('uploads');
+        $filename = $request->file('attachment');
 
-        return redirect()->back()->with('message', 'Gửi mail thành công');
+        if (!empty($filename)) {
+            $name = time().'.'.$filename->getClientOriginalExtension();
+
+            if (!File::exists($path)) {
+                File::makeDirectory($path, $mode = 0777, true, true);
+            }
+            $filename->move($path, $name);
+
+            $attachment = $path.'/'.$name;
+
+            foreach ($users as $user) {
+                $this->mailService->sendUserProfile($user, $attachment);
+            }
+        } else {
+            foreach ($users as $user) {
+                $this->mailService->sendUserProfile($user, $attachment='/');
+            }
+        }
+
+        return redirect()->back()->with('message', 'The mail was successfully sent! Please check you email!');
     }
 
     public function formSendMail()

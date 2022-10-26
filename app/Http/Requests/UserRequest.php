@@ -23,12 +23,14 @@ class UserRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
+                'not_regex:/^[root]/',
             ],
             'password' => [
                 'required',
                 'string',
                 'min:8',
-                'regex:/[@$!%*#?&]/|regex:/[0-9]/',
+                'regex:/[@$!%*#?&]/',
+                'regex:/[0-9]/',
                 'required_with:password_confirm',
                 'same:password_confirm',
             ],

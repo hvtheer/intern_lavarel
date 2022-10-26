@@ -1,4 +1,4 @@
-@extends ('layout')
+@extends ('layouts.layout')
 @section ('content')
 <div class="col-md-10 content">
     <div class="container">
@@ -8,6 +8,11 @@
         </nav>
         <form action="{{ route('send') }}" method="post">
             @csrf
+            @if (session()->has('message'))
+                <div class="alert alert-success text-center">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <label for="Name">Name</label>
             <select class="selectpicker form-control" name="email" title="Choose one of the following...">
                 <option value="all">All users</option>

@@ -18,6 +18,16 @@
         <a href="{{ route('category.index') }}">
             <p>Category management</p>
         </a>
+        <p id="head-sidebar">
+        <a href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+            {{ __('Log out') }}</p>
+        </a>
+        </p>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+        </form>
     </div>
 </div>
 <!-- /sidebar -->

@@ -82,6 +82,6 @@ class RegisterController extends Controller
 
         event(new Registered($this->create($request->all())));
 
-        return redirect('/login')->with('status', 'Please check your email and verify according to the instructions.');
+        return redirect('/login')->with('status', 'Please check your email and verify according to the instructions!');
     }
 }

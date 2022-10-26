@@ -1,4 +1,4 @@
-@extends ('layout')
+@extends ('layouts.layout')
 @section ('content')
 <div class="col-md-10 content">
     <div class="container">
@@ -8,11 +8,6 @@
         </nav>
         <form action="{{ route('user.store') }}" method="post">
             @csrf
-            {{-- @if ($errors->any())
-                <div class="alert alert-danger text-center ">
-                    Vui lòng kiểm tra lại dữ liệu
-                </div>
-            @endif --}}
             @if (session()->has('message'))
                 <div class="alert alert-success text-center">
                     {{ session()->get('message') }}
