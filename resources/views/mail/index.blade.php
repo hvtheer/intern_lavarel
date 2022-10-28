@@ -6,7 +6,7 @@
             <a class="navbar-brand">Send email to user</a>
             <a class="btn btn-primary" type="submit" href="{{ route('user.index')}}">Back</a>
         </nav>
-        <form action="{{ route('send') }}" method="post">
+        <form action="{{ route('send') }}" method="post" enctype="multipart/form-data">
             @csrf
             @if (session()->has('message'))
                 <div class="alert alert-success text-center">
