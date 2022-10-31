@@ -6,15 +6,23 @@ use App\Http\Requests\UserRequest;
 use App\Services\MailService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Repositories\Admin\User\UserRepository;
 
 class UserController extends Controller
 {
+    protected $userRepository;
     protected $mailService;
+
+    public function __construct(UserRepository $userRepository, MailService $mailService)
+    {
+        $this->userRepository = $userRepository;
+        $this->mailService = $mailService;
+    }
 
     public function index()
     {
         return view('admin.user.index', [
-            'users' => $this->getSessionUsers(),
+            'users' => $this->userRepository->paginate(),
         ]);
     }
 
@@ -33,11 +41,6 @@ class UserController extends Controller
     private function getSessionUsers()
     {
         return collect(Session::get('users'));
-    }
-
-    public function __construct(MailService $mailService)
-    {
-        $this->mailService = $mailService;
     }
 
     public function sendMailUserProfile(Request $request)

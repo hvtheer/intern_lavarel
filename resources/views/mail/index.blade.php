@@ -1,4 +1,4 @@
-@extends ('layouts.layout')
+@extends ('layouts.master')
 @section ('content')
 <div class="col-md-10 content">
     <div class="container">
