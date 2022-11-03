@@ -5,7 +5,7 @@
         <div class="card bg-light">
             <div class="container">
                 <nav class="navbar justify-content-between">
-                    <a class="navbar-brand">Permission Group List</a>
+                    <a class="navbar-brand">Information</a>
                     <div>
                         <a class="btn btn-primary" type="submit" href="{{ route('permission-group.create') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -19,13 +19,13 @@
                     <thead>
                         <tr>
                             <th style="width: 20%;" scope="col">ID</th>
-                            <th style="width: 40%;" scope="col">Name</th>
-                            <th style="width: 40%;" scope="col">Action</th>
+                            <th style="width: 30%;" scope="col">Name</th>
+                            <th style="width: 25%;" scope="col">Created at</th>
+                            <th style="width: 25%;" scope="col">Updated at</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if(!empty($permissionGroups))
-                        @foreach($permissionGroups as $permissionGroup)
+                        @if(!empty($permissionGroup))
                         <tr>
                             <td>
                                 {{$permissionGroup->id}}
@@ -34,22 +34,15 @@
                                 {{$permissionGroup->name}}
                             </td>
                             <td>
-                                <a class="btn btn-primary btn-sm" href="{{ route('permission-group.edit', $permissionGroup->id) }}">Edit</a>
-                                <a class="btn btn-primary btn-sm" href="{{ route('permission-group.show', $permissionGroup->id) }}">Info</a>
-                                <form class="d-inline" method="post" action="{{ route('permission-group.destroy', $permissionGroup->id) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" onclick="return confirm('Do you want to delete this permission group?')" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                                {{$permissionGroup->created_at}}
+                            </td>
+                            <td>
+                                {{$permissionGroup->updated_at}}
                             </td>
                         </tr>
-                        @endforeach
                         @endif
                     </tbody>
                 </table>
-                <div class="pagination justify-content-center">
-                    {{ $permissionGroups->links() }}
-                </div>
             </div> 
         </div> 
     </div>

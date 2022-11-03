@@ -3,14 +3,22 @@
 <div class="col-md-10 content">
     <div class="container">
         <nav class="navbar justify-content-between">
+    @if(empty($permissionGroup))
             <a class="navbar-brand">Create a Permission Group</a>
             <a class="btn btn-primary" type="submit" href="{{ route('permission-group.index') }}">Back</a>
         </nav>
         <form action="{{ route('permission-group.store') }}" method="post">
+    @else
+            <a class="navbar-brand">Edit a Permission Group</a>
+            <a class="btn btn-primary" type="submit" href="{{ route('permission-group.index') }}">Back</a>
+        </nav>
+        <form action="{{ route('permission-group.update', $permissionGroup->id) }}"  method="post">
+        @method('PUT')
+    @endif
             @csrf
-            @if (session()->has('message'))
+            @if (session('message'))
                 <div class="alert alert-success text-center">
-                    {{ session()->get('message') }}
+                    {{ session('message') }}
                 </div>
             @endif
 
@@ -19,7 +27,7 @@
                 @if(empty($permissionGroup))
                 <input type="text" class="form-control" id="InputName" name="name" value="{{ old('name') }}">
                 @else
-                <input type="text" class="form-control" id="InputName" name="name" value="{{ $permissionGroup['name'] }}">
+                <input type="text" class="form-control" id="InputName" name="name" value="{{ $permissionGroup->name }}">
                 @endif
                 @error('name')
                 <span class="text-danger">{{ $message }}</span>

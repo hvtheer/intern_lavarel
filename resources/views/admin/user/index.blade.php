@@ -7,7 +7,7 @@
                 <nav class="navbar justify-content-between">
                     <a class="navbar-brand">User List</a>
                     <div>
-                        <a class="btn btn-default btn-outline-dark" type="submit" href="{{route('formSendMail')}}">
+                        <a class="btn btn-default btn-outline-dark" type="submit" href="{{ route('formSendMail') }}">
                             Send mail
                         </a>
                         <a class="btn btn-primary" type="submit" href="{{ route('user.create') }}">
@@ -37,10 +37,10 @@
                                 </svg>
                             </th>
                             <td>
-                                {{$user['name']}}
+                                {{$user->name}}
                             </td>
                             <td>
-                                {{$user['email']}}
+                                {{$user->email}}
                             </td>
                             <td>
                                 <button type="button" class="btn btn-primary btn-sm">Edit</button>
@@ -51,7 +51,9 @@
                         @endif
                     </tbody>
                 </table>
+                <div class="pagination justify-content-center">
                 {{ $users->links() }}
+                </div>
             </div> 
         </div> 
     </div>

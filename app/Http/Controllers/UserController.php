@@ -33,7 +33,7 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-        Session::push('users', $request->validated());
+        $this->userRepository->save($request->validated());
 
         return redirect()->back()->with('message', 'Thêm mới thành công');
     }
@@ -45,7 +45,7 @@ class UserController extends Controller
 
     public function sendMailUserProfile(Request $request)
     {
-        $users = $this->getSessionUsers();
+        $users = $this->userRepository->getAll();
         $email = $request->email;
         $attachment = null;
         $attachment = $request->file('attachment');
@@ -67,7 +67,7 @@ class UserController extends Controller
     public function formSendMail()
     {
         return view('mail.index', [
-            'users' => $this->getSessionUsers(),
+            'users' => $this->userRepository->getAll(),
         ]);
     }
 }

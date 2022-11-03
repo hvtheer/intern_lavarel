@@ -8,9 +8,9 @@
         </nav>
         <form action="{{ route('user.store') }}" method="post">
             @csrf
-            @if (session()->has('message'))
+            @if (session('message'))
                 <div class="alert alert-success text-center">
-                    {{ session()->get('message') }}
+                    {{ session('message') }}
                 </div>
             @endif
             <div class="form-group">

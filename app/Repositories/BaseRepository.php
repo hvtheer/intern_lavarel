@@ -17,7 +17,7 @@ abstract class BaseRepository implements RepositoryInterface
     {
         $query = $this->model->query();
 
-        return $query->paginate($perPage);
+        return $query->orderBy('id')->paginate($perPage);
     }
 
     public function save(array $inputs, array $conditions = ['id' => null])
