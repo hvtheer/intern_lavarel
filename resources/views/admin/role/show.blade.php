@@ -5,7 +5,7 @@
         <div class="card bg-light">
             <div class="container">
                 <nav class="navbar justify-content-between">
-                    <a class="navbar-brand">Role List</a>
+                    <a class="navbar-brand">Information</a>
                     <div>
                         <a class="btn btn-primary" type="submit" href="{{ route('role.create') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -18,14 +18,14 @@
                 <table class="table table-hover table-bordered bg-white">
                     <thead>
                         <tr>
-                            <th style="width: 20%;" scope="col">ID</th>
-                            <th style="width: 20%;" scope="col">Name</th>
-                            <th style="width: 20%;" scope="col">Action</th>
+                            <th style="width: 10%;" scope="col">ID</th>
+                            <th style="width: 15%;" scope="col">Name</th>
+                            <th style="width: 20%;" scope="col">Created at</th>
+                            <th style="width: 20%;" scope="col">Updated at</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if(!empty($roles))
-                        @foreach($roles as $role)
+                        @if(!empty($role))
                         <tr>
                             <td>
                                 {{$role->id}}
@@ -34,22 +34,15 @@
                                 {{$role->name}}
                             </td>
                             <td>
-                                <a class="btn btn-primary btn-sm" href="{{ route('role.edit', $role->id) }}">Edit</a>
-                                <a class="btn btn-primary btn-sm" href="{{ route('role.show', $role->id) }}">Info</a>
-                                <form class="d-inline" method="post" action="{{ route('role.destroy', $role->id) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" onclick="return confirm('Do you want to delete this role?')" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                                {{$role->created_at}}
+                            </td>
+                            <td>
+                                {{$role->updated_at}}
                             </td>
                         </tr>
-                        @endforeach
                         @endif
                     </tbody>
                 </table>
-                <div class="pagination justify-content-center">
-                    {{ $roles->links() }}
-                </div>
             </div> 
         </div> 
     </div>

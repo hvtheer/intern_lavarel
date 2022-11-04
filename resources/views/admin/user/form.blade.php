@@ -3,19 +3,32 @@
 <div class="col-md-10 content">
     <div class="container">
         <nav class="navbar justify-content-between">
-            <a class="navbar-brand">Create a User</a>
-            <a class="btn btn-primary" type="submit" href="{{ route('user.index')}}">Back</a>
+    @if (empty($user))
+            <a class="navbar-brand">Create a user</a>
+            <a class="btn btn-primary" type="submit" href="{{ route('user.index') }}">Back</a>
         </nav>
         <form action="{{ route('user.store') }}" method="post">
+    @else
+            <a class="navbar-brand">Edit a user Group</a>
+            <a class="btn btn-primary" type="submit" href="{{ route('user.index') }}">Back</a>
+        </nav>
+        <form action="{{ route('user.update', $user->id) }}"  method="post">
+        @method('PUT')
+    @endif
             @csrf
             @if (session('message'))
                 <div class="alert alert-success text-center">
                     {{ session('message') }}
                 </div>
             @endif
+
             <div class="form-group">
                 <label for="InputName">Name</label>
-                <input type="text" class="form-control" id="InputName" name="name" value="{{ old('name')}}">
+                @if(empty($user))
+                <input type="text" class="form-control" id="InputName" name="name" value="{{ old('name') }}">
+                @else
+                <input type="text" class="form-control" id="InputName" name="name" value="{{ $user->name }}">
+                @endif
                 @error('name')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -23,7 +36,11 @@
 
             <div class="form-group">
                 <label for="InputEmail">Email</label>
-                <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" name="email" value="{{ old('email')}}">
+                @if(empty($user))
+                <input type="text" class="form-control" id="InputEmail" name="email" value="{{ old('email') }}">
+                @else
+                <input type="text" class="form-control" id="InputEmail" name="email" value="{{ $user->email }}">
+                @endif
                 @error('email')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -52,23 +69,35 @@
 
             <div class="form-group">
                 <label for="InputAddress">Address</label>
-                <input type="text" class="form-control" id="InputAddress" name="address" value="{{ old('address')}}">
+                @if(empty($user))
+                <input type="text" class="form-control" id="InputAddress" name="address" value="{{ old('address') }}">
+                @else
+                <input type="text" class="form-control" id="InputAddress" name="address" value="{{ $user->address }}">
+                @endif
                 @error('address')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
-            
+
             <div class="form-group">
-                <label for="exampleInputEmail1">Facebook link</label>
-                <input type="text" class="form-control" id="facebook" placeholder="https://example.com" name="facebook" value="{{old('facebook')}}">
+                <label for="InputFacebook">Facebook</label>
+                @if(empty($user))
+                <input type="text" class="form-control" id="InputFacebook" name="facebook" value="{{ old('facebook') }}">
+                @else
+                <input type="text" class="form-control" id="InputFacebook" name="facebook" value="{{ $user->facebook }}">
+                @endif
                 @error('facebook')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Youtube</label>
-                <input type="text" class="form-control" id="youtube" placeholder="https://example.com" name="youtube" value="{{old('youtube')}}">
+                <label for="InputYoutube">Youtube</label>
+                @if(empty($user))
+                <input type="text" class="form-control" id="InputYoutube" name="youtube" value="{{ old('youtube') }}">
+                @else
+                <input type="text" class="form-control" id="InputYoutube" name="youtube" value="{{ $user->youtube }}">
+                @endif
                 @error('youtube')
                 <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -76,7 +105,11 @@
 
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                @if(empty($user))
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="desription" value="{{ old('description') }}" rows="3"></textarea>
+                @else
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="desription" value="{{ $user->description }}" rows="3"></textarea>
+                @endif
             </div>
 
             <div class="add-button">

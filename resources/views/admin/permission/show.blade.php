@@ -5,7 +5,7 @@
         <div class="card bg-light">
             <div class="container">
                 <nav class="navbar justify-content-between">
-                    <a class="navbar-brand">Permission List</a>
+                    <a class="navbar-brand">Information</a>
                     <div>
                         <a class="btn btn-primary" type="submit" href="{{ route('permission.create') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -18,16 +18,16 @@
                 <table class="table table-hover table-bordered bg-white">
                     <thead>
                         <tr>
-                            <th style="width: 20%;" scope="col">ID</th>
-                            <th style="width: 20%;" scope="col">Name</th>
-                            <th style="width: 20%;" scope="col">Key</th>
-                            <th style="width: 20%;" scope="col">PerGroup ID</th>
-                            <th style="width: 20%;" scope="col">Action</th>
+                            <th style="width: 10%;" scope="col">ID</th>
+                            <th style="width: 15%;" scope="col">Name</th>
+                            <th style="width: 15%;" scope="col">Key</th>
+                            <th style="width: 20%;" scope="col">PG ID</th>
+                            <th style="width: 20%;" scope="col">Created at</th>
+                            <th style="width: 20%;" scope="col">Updated at</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if(!empty($permissions))
-                        @foreach($permissions as $permission)
+                        @if(!empty($permission))
                         <tr>
                             <td>
                                 {{$permission->id}}
@@ -42,22 +42,15 @@
                                 {{$permission->permission_group_id}}
                             </td>
                             <td>
-                                <a class="btn btn-primary btn-sm" href="{{ route('permission.edit', $permission->id) }}">Edit</a>
-                                <a class="btn btn-primary btn-sm" href="{{ route('permission.show', $permission->id) }}">Info</a>
-                                <form class="d-inline" method="post" action="{{ route('permission.destroy', $permission->id) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" onclick="return confirm('Do you want to delete this permission?')" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                                {{$permission->created_at}}
+                            </td>
+                            <td>
+                                {{$permission->updated_at}}
                             </td>
                         </tr>
-                        @endforeach
                         @endif
                     </tbody>
                 </table>
-                <div class="pagination justify-content-center">
-                    {{ $permissions->links() }}
-                </div>
             </div> 
         </div> 
     </div>

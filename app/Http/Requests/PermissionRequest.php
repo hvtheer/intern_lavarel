@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PermissionRequest extends FormRequest
@@ -13,7 +14,7 @@ class PermissionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,9 @@ class PermissionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required', Rule::unique('permissions')->ignore($this->permission)],
+            'key'  => ['required', Rule::unique('permissions')->ignore($this->permission)],
+            'permission_group_id' => ['required', Rule::exists('permission_groups', 'id')],
         ];
     }
 }

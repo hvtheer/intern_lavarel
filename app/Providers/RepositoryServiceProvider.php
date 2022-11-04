@@ -17,6 +17,16 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Admin\PermissionGroup\PermissionGroupRepositoryInterface::class,
             \App\Repositories\Admin\PermissionGroup\PermissionGroupRepository::class
         );
+
+        $this->app->singleton(
+            \App\Repositories\Admin\Permission\PermissionRepositoryInterface::class,
+            \App\Repositories\Admin\Permission\PermissionRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\Admin\User\UserRepositoryInterface::class,
+            \App\Repositories\Admin\User\UserRepository::class
+        );
     }
 
     /**

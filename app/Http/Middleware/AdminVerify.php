@@ -24,7 +24,7 @@ class AdminVerify
         if (Auth::user()->isAdmin()) {
             return $next($request);
         }
-        
+
         return redirect('/home');
     }
 }

@@ -16,10 +16,10 @@ class PermissionGroupController extends Controller
 
     public function index()
     {
-        $permissionGroup = $this->permissionGroupRepository->paginate();
+        $permissionGroups = $this->permissionGroupRepository->paginate();
 
         return view('admin.permission-group.index', [
-            'permissionGroups' => $permissionGroup,
+            'permissionGroups' => $permissionGroups,
         ]);
     }
 

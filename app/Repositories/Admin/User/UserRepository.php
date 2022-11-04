@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories\Admin\User;
 
 use App\Repositories\BaseRepository;
