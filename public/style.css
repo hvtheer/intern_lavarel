@@ -77,3 +77,7 @@
 .bi .bi-person {
     width: 50px;
 }
+
+btn {
+    text-decoration: none;
+}

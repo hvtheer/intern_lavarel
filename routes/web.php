@@ -2,15 +2,22 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PermissionGroupController;
 
 Route::prefix('admin')->middleware(['auth', 'verified', 'admin.verify'])->group(function () {
-    Route::resource('user', App\Http\Controllers\UserController::class);
-    Route::resource('role', App\Http\Controllers\RoleController::class);
-    Route::resource('permission', App\Http\Controllers\PermissionController::class);
-    Route::resource('product', App\Http\Controllers\ProductController::class);
-    Route::resource('category', App\Http\Controllers\CategoryController::class);
-    Route::get('/formSendMail', [App\Http\Controllers\UserController::class, 'formSendMail'])->name('formSendMail');
-    Route::post('/formSendMail', [App\Http\Controllers\UserController::class, 'sendMailUserProfile'])->name('send');
+    Route::resource('user', UserController::class);
+    Route::resource('role', RoleController::class);
+    Route::resource('permission', PermissionController::class);
+    Route::resource('permission-group', PermissionGroupController::class);
+    Route::resource('product', ProductController::class);
+    Route::resource('category', CategoryController::class);
+    Route::get('/formSendMail', [UserController::class, 'formSendMail'])->name('formSendMail');
+    Route::post('/formSendMail', [UserController::class, 'sendMailUserProfile'])->name('send');
 });
 
 Auth::routes(['verify' => true]);

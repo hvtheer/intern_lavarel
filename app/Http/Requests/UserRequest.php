@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
@@ -23,6 +24,7 @@ class UserRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
+                Rule::unique('users')->ignore($this->user),
                 'not_regex:/^[root]/',
             ],
             'password' => [
@@ -35,9 +37,15 @@ class UserRequest extends FormRequest
                 'same:password_confirm',
             ],
             'password_confirm' => 'required',
-            'address' => 'required',
-            'facebook' => 'url',
-            'youtube' => 'url',
+            'phone' => [
+                'required',
+                'regex:/^([0-9\s\-\+\(\)]*)$/',
+                'min:10',
+            ],
+            'username' => [
+                'required', 
+                Rule::unique('users')->ignore($this->user),
+            ],
         ];
     }
 }

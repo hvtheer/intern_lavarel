@@ -1,4 +1,4 @@
-@extends ('layouts.layout')
+@extends ('layouts.master')
 @section ('content')
 <div class="col-md-10 content">
     <div class="container">
@@ -8,9 +8,9 @@
         </nav>
         <form action="{{ route('send') }}" method="post" enctype="multipart/form-data">
             @csrf
-            @if (session()->has('message'))
+            @if (session('message'))
                 <div class="alert alert-success text-center">
-                    {{ session()->get('message') }}
+                    {{ session('message') }}
                 </div>
             @endif
             <label for="Name">Name</label>
@@ -18,7 +18,7 @@
                 <option value="all">All users</option>
                 @if(!empty($users))
                     @foreach($users as $user)
-                    <option value="{{ $user['email'] }}">{{ $user['name'] }}</option>
+                    <option value="{{ $user->email }}">{{ $user->name }}</option>
                     @endforeach
                 @endif
             </select>

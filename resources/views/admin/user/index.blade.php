@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.master')
 @section('content')
 <div class="col-md-10 content">
     <div class="container">
@@ -7,7 +7,7 @@
                 <nav class="navbar justify-content-between">
                     <a class="navbar-brand">User List</a>
                     <div>
-                        <a class="btn btn-default btn-outline-dark" type="submit" href="{{route('formSendMail')}}">
+                        <a class="btn btn-default btn-outline-dark" type="submit" href="{{ route('formSendMail') }}">
                             Send mail
                         </a>
                         <a class="btn btn-primary" type="submit" href="{{ route('user.create') }}">
@@ -21,56 +21,51 @@
                 <table class="table table-hover table-bordered bg-white">
                     <thead>
                         <tr>
-                            <th style="width: 15%;" scope="col">User</th>
-                            <th style="width: 30%;" scope="col">Name</th>
+                            <th style="width: 10%;" scope="col">ID</th>
+                            <th style="width: 20%;" scope="col">User</th>
+                            <th style="width: 20%;" scope="col">Name</th>
                             <th style="width: 30%;" scope="col">Email</th>
-                            <th style="width: 15%;" scope="col">Action</th>
+                            <th style="width: 20%;" scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if(!empty($users))
+                    @if(!empty($users))
                         @foreach($users as $user)
                         <tr>
-                            <th style="width:50px" id="user">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                            <td>
+                                {{$user->id}}
+                            </td>
+                            <td style="width:50px" id="user">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                                 </svg>
-                            </th>
-                            <td>
-                                {{$user['name']}}
                             </td>
                             <td>
-                                {{$user['email']}}
-                                {{-- {{$user['address']}} --}}
+                                {{$user->name}}
                             </td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                {{$user->email}}
+                            </td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="{{ route('user.edit', $user->id) }}">Edit</a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('user.show', $user->id) }}">Info</a>
+                                <form class="d-inline" method="post" action="{{ route('user.destroy', $user->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" onclick="return confirm('Do you want to delete this user?')" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
                         @endif
                     </tbody>
                 </table>
-                <div>
-                    <div class="pagination justify-content-center">
-                        <div class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true"><</span>
-                            </a>
-                        </div>
-                        <div class="page-item">
-                            <a class="page-link" href="#">1</a>
-                        </div>
-                        <div class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">></span>
-                            </a>
-                        </div>
-                    </div>
-                </div> 
+                <div class="pagination justify-content-center">
+                    {{ $users->links() }}
+                </div>
             </div> 
         </div> 
     </div>
 </div>
-@endsection()
+
+@endsection

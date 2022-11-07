@@ -11,6 +11,9 @@
         <a href="{{ route('permission.index') }}">
             <p>Permission management</p>
         </a>
+        <a href="{{route('permission-group.index')}}">
+            <p>Permission group management</p>
+        </a>
         <p id="head-sidebar">Catalog</p>
         <a href="{{ route('product.index') }}">
             <p>Product management</p>
