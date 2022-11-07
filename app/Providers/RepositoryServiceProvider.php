@@ -27,6 +27,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Admin\User\UserRepositoryInterface::class,
             \App\Repositories\Admin\User\UserRepository::class
         );
+
+        $this->app->singleton(
+            \App\Repositories\Admin\Role\RoleRepositoryInterface::class,
+            \App\Repositories\Admin\Role\RoleRepository::class
+        );
     }
 
     /**

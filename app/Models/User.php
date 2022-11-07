@@ -21,14 +21,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'student' => 2,
     ];
 
-    public $fillable =[
-        'name',
-        'username',
-        'email',
-        'password',
-        'type',
-        'verified_at',
-    ];
+    public $guarded = ['id'];
+
 
     public function roles()
     {
