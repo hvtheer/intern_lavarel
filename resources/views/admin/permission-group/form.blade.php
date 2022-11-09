@@ -4,13 +4,13 @@
     <div class="container">
         <nav class="navbar justify-content-between">
     @if(empty($permissionGroup))
-            <a class="navbar-brand">Create a Permission Group</a>
-            <a class="btn btn-primary" type="submit" href="{{ route('permission-group.index') }}">Back</a>
+            <a class="navbar-brand">{{__('permission-group.createAPermissionGroup')}}</a>
+            <a class="btn btn-primary" type="submit" href="{{ route('permission-group.index') }}">{{__('button.back')}}</a>
         </nav>
         <form action="{{ route('permission-group.store') }}" method="post">
     @else
-            <a class="navbar-brand">Edit a Permission Group</a>
-            <a class="btn btn-primary" type="submit" href="{{ route('permission-group.index') }}">Back</a>
+            <a class="navbar-brand">{{__('permission-group.editAPermissionGroup')}}</a>
+            <a class="btn btn-primary" type="submit" href="{{ route('permission-group.index') }}">{{__('button.back')}}</a>
         </nav>
         <form action="{{ route('permission-group.update', $permissionGroup->id) }}"  method="post">
         @method('PUT')
@@ -23,7 +23,7 @@
             @endif
 
             <div class="form-group">
-                <label for="InputName">Name</label>
+                <label for="InputName">{{__('permission-group.name')}}</label>
                 @if(empty($permissionGroup))
                 <input type="text" class="form-control" id="InputName" name="name" value="{{ old('name') }}">
                 @else
@@ -35,7 +35,7 @@
             </div>
 
             <div class="add-button">
-                <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                <button type="submit" class="btn btn-primary btn-sm">{{__('button.save')}}</button>
             </div>
         </form>
     </div>

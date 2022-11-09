@@ -4,13 +4,13 @@
     <div class="container">
         <nav class="navbar justify-content-between">
     @if (empty($user))
-            <a class="navbar-brand">Create a user</a>
-            <a class="btn btn-primary" type="submit" href="{{ route('user.index') }}">Back</a>
+            <a class="navbar-brand">{{__('user.createAUser')}}</a>
+            <a class="btn btn-primary" type="submit" href="{{ route('user.index') }}">{{__('button.back')}}</a>
         </nav>
         <form action="{{ route('user.store') }}" method="post">
     @else
-            <a class="navbar-brand">Edit a user Group</a>
-            <a class="btn btn-primary" type="submit" href="{{ route('user.index') }}">Back</a>
+            <a class="navbar-brand">{{__('user.editAUser')}}</a>
+            <a class="btn btn-primary" type="submit" href="{{ route('user.index') }}">{{__('button.back')}}</a>
         </nav>
         <form action="{{ route('user.update', $user->id) }}"  method="post">
         @method('PUT')
@@ -25,7 +25,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="InputName">Name</label>
+                        <label for="InputName">{{__('user.name')}}</label>
                         @if(empty($user))
                         <input type="text" class="form-control" id="InputName" name="name" value="{{ old('name') }}">
                         @else
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label for="InputUsername">Username</label>
+                        <label for="InputUsername">{{__('user.username')}}</label>
                         @if(empty($user))
                         <input type="text" class="form-control" id="InputUsername" name="username" value="{{ old('username') }}">
                         @else
@@ -49,10 +49,11 @@
                     </div>
                 </div>
             </div>
+            
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="InputEmail">Email</label>
+                        <label for="InputEmail">{{__('user.email')}}</label>
                         @if(empty($user))
                         <input type="email" class="form-control" id="InputEmail" name="email" value="{{ old('email') }}">
                         @else
@@ -64,7 +65,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label for="InputPhone">Phone</label>
+                        <label for="InputPhone">{{__('user.phone')}}</label>
                         @if(empty($user))
                         <input type="text" class="form-control" id="InputPhone" name="phone" value="{{ old('phone') }}">
                         @else
@@ -80,7 +81,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6 ">
-                        <label for="exampleInputPassword1">Password</label>
+                        <label for="exampleInputPassword1">{{__('user.password')}}</label>
                         @if(empty($user))
                         <input type="password" class="form-control" id="password" name="password" value="{{ old('password')}}">
                         @else
@@ -92,7 +93,7 @@
                     </div>
 
                     <div class="col-md-6 ">
-                        <label for="exampleInputPassword1">Password Confirm</label>
+                        <label for="exampleInputPassword1">{{__('user.passwordConfirm')}}</label>
                         @if(empty($user))
                         <input type="password" class="form-control" id="password_confirm" name="password_confirm" value="{{ old('password_confirm')}}">
                         @else
@@ -106,7 +107,7 @@
             </div>
 
             <div class="form-group">
-                <label for="InputAddress">Address</label>
+                <label for="InputAddress">{{__('user.address')}}</label>
                 @if(empty($user))
                 <input type="text" class="form-control" id="InputAddress" name="address" value="{{ old('address') }}">
                 @else
@@ -118,17 +119,17 @@
             </div>
 
             <div class="form-group">
-                <label for="InputDescription">Description</label>
+                <label for="exampleFormControlTextarea1">{{__('user.description')}}</label>
                 @if(empty($user))
-                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" value="{{ old('description') }}" rows="3"></textarea>
                 @else
-                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" value="{{ $user->description }}" rows="3"></textarea>
                 @endif
             </div>
 
             <div class="add-button">
-                <button type="submit" class="btn btn-primary btn-sm">Save</button>
-                <button type="submit" class="btn btn-secondary btn-sm">Reset</button>
+                <button type="submit" class="btn btn-primary btn-sm">{{__('button.save')}}</button>
+                <button type="button" class="btn btn-secondary btn-sm">{{__('button.reset')}}</button>
             </div>
         </form>
     </div>
