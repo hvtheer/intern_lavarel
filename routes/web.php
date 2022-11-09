@@ -8,6 +8,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PermissionGroupController;
+use App\Http\Controllers\LangController;
 
 Route::prefix('admin')->middleware(['auth', 'verified', 'admin.verify'])->group(function () {
     Route::resource('user', UserController::class);
@@ -18,6 +19,7 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'admin.verify'])->group(
     Route::resource('category', CategoryController::class);
     Route::get('/formSendMail', [UserController::class, 'formSendMail'])->name('formSendMail');
     Route::post('/formSendMail', [UserController::class, 'sendMailUserProfile'])->name('send');
+    Route::get('lang/{lang}', [LangController::class, 'changeLang'])->name('lang');
 });
 
 Auth::routes(['verify' => true]);

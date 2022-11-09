@@ -4,13 +4,13 @@
     <div class="container">
         <nav class="navbar justify-content-between">
     @if(empty($role))
-            <a class="navbar-brand">Create a role</a>
-            <a class="btn btn-primary" type="submit" href="{{ route('role.index') }}">Back</a>
+            <a class="navbar-brand">{{__('role.createARole')}}</a>
+            <a class="btn btn-primary" type="submit" href="{{ route('role.index') }}">{{__('button.back')}}</a>
         </nav>
         <form action="{{ route('role.store') }}" method="post">
     @else
-            <a class="navbar-brand">Edit a role</a>
-            <a class="btn btn-primary" type="submit" href="{{ route('role.index') }}">Back</a>
+            <a class="navbar-brand">{{__('role.editARole')}}</a>
+            <a class="btn btn-primary" type="submit" href="{{ route('role.index') }}">{{__('button.back')}}</a>
         </nav>
         <form action="{{ route('role.update', $role->id) }}"  method="post">
         @method('PUT')
@@ -23,7 +23,7 @@
             @endif
 
             <div class="form-group">
-                <label for="InputName">Name</label>
+                <label for="InputName">{{__('role.name')}}</label>
                 @if(empty($role))
                 <input type="text" class="form-control" id="InputName" name="name" value="{{ old('name') }}">
                 @else
@@ -35,7 +35,7 @@
             </div>
 
             <div class="add-button">
-                <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                <button type="submit" class="btn btn-primary btn-sm">{{__('button.save')}}</button>
             </div>
         </form>
     </div>
